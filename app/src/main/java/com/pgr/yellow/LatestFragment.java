@@ -16,6 +16,7 @@ public class LatestFragment extends Fragment{
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         return inflater.inflate(R.layout.oraganization, container, false);
+        //rest
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

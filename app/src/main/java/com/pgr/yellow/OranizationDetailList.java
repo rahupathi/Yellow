@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.pgr.yellow.Adapters.OrganizationAdapter;
+import com.pgr.yellow.Adapters.OrganizationDetailAdapter;
 import com.pgr.yellow.Models.OrganizationModel;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class OranizationDetailList extends Fragment {
     private ListView listView;
     private ArrayList<OrganizationModel> organizationModelList = null;
-    private OrganizationAdapter adapter;
+    private OrganizationDetailAdapter adapter;
     View vDetail;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +63,7 @@ public class OranizationDetailList extends Fragment {
         organizationModelList.add(objOrganizationMode);
 
         listView = (ListView) vDetail.findViewById(R.id.lvOraglistView);
-        adapter = new OrganizationAdapter(getActivity().getApplicationContext(), organizationModelList);
+        adapter = new OrganizationDetailAdapter(getActivity().getApplicationContext(), organizationModelList);
         listView.setAdapter(adapter);
         listView.requestFocus(0);
     }

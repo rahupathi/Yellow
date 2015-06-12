@@ -1,5 +1,6 @@
 package com.pgr.yellow;
 
+import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
 
-public class MainActivity extends FragmentActivity   {
+public class MainActivity extends ActionBarActivity   {
 
 
     private static final String TAB_1_TAG = "tab_1";
@@ -25,6 +26,9 @@ public class MainActivity extends FragmentActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         InitView();
     }
 

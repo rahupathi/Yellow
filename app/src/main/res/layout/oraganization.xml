@@ -46,7 +46,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/black"
                 android:divider="@android:color/darker_gray"
-                android:dividerHeight=".7dp"
+                android:dividerHeight="0.7dp"
                 android:drawSelectorOnTop="false" />
         </LinearLayout>
     </LinearLayout>

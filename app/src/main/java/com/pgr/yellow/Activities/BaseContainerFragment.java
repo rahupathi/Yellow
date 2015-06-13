@@ -1,8 +1,11 @@
-package com.pgr.yellow;
+package com.pgr.yellow.Activities;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+
+import com.pgr.yellow.R;
+
 /**
  * Created by BMS0020 on 6/11/2015.
  */

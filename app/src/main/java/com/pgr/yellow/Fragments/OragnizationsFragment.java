@@ -1,10 +1,9 @@
-package com.pgr.yellow;
+package com.pgr.yellow.Fragments;
 
 /**
  * Created by BMS0020 on 6/11/2015.
  */
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +15,7 @@ import android.widget.ListView;
 
 import com.pgr.yellow.Adapters.OrganizationAdapter;
 import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.R;
 
 import java.util.ArrayList;
 

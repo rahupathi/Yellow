@@ -1,4 +1,4 @@
-package com.pgr.yellow;
+package com.pgr.yellow.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.pgr.yellow.Adapters.OrganizationAdapter;
 import com.pgr.yellow.Adapters.OrganizationDetailAdapter;
 import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.R;
 
 import java.util.ArrayList;
 

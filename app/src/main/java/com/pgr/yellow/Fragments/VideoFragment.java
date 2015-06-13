@@ -1,4 +1,4 @@
-package com.pgr.yellow;
+package com.pgr.yellow.Fragments;
 
 /**
  * Created by BMS0020 on 6/11/2015.
@@ -9,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.pgr.yellow.Activities.BaseContainerFragment;
+import com.pgr.yellow.R;
 
 public class VideoFragment extends Fragment implements OnClickListener{
     @Override

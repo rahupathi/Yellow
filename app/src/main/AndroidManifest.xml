@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.BusinessActivity"></activity>
+        <activity android:name=".Activities.ListWithHeaders"></activity>
     </application>
 
 </manifest>

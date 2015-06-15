@@ -32,7 +32,7 @@ public class Tab2Container extends BaseContainerFragment {
     }
 
     private void initView() {
-        replaceFragment(new VideoFragment(), false);
+        replaceFragment(new BusinessFragment(), false);
 
     }
 

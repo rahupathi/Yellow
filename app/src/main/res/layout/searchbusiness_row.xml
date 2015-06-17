@@ -28,7 +28,7 @@
                 android:text="Large Text"
                 android:textSize="12dp"
                 android:textColor="#fff"
-                android:id="@+id/tvOrgName"
+                android:id="@+id/tvSBFacilityName"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -40,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="Medium Text"
-                android:textSize="14dp"
-                android:id="@+id/tvOrgAddress"
-                android:layout_below="@+id/tvOrgName"
+                android:textSize="10dp"
+                android:id="@+id/tvSBFacilityAddress"
+                android:layout_below="@+id/tvSBFacilityName"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:singleLine="true"
@@ -53,13 +53,34 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FACF2D"
                 android:text="Medium Text"
-                android:textSize="12dp"
-                android:id="@+id/tvOrgCity"
-                android:layout_below="@+id/tvOrgAddress"
+                android:textSize="10dp"
+                android:id="@+id/tvSBFacilityCity"
+                android:layout_below="@+id/tvSBFacilityAddress"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:singleLine="true"
                 android:padding="2dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView"
+                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_alignRight="@+id/linearLayout"
+                android:layout_alignEnd="@+id/linearLayout"
+                android:src="@android:drawable/ic_menu_call"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
     </LinearLayout>

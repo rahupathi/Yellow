@@ -1,20 +1,17 @@
 package com.pgr.yellow.Fragments;
 
-/**
- * Created by BMS0020 on 6/11/2015.
- */
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pgr.yellow.Activities.BaseContainerFragment;
-import com.pgr.yellow.Fragments.LatestFragment;
 import com.pgr.yellow.R;
 
-public class Tab3Container extends BaseContainerFragment {
-
+/**
+ * Created by BMS0020 on 6/17/2015.
+ */
+public class Tab4Container extends BaseContainerFragment {
     private boolean IsViewInited;
 
     @Override
@@ -32,7 +29,7 @@ public class Tab3Container extends BaseContainerFragment {
     }
 
     private void initView() {
-        replaceFragment(new CustomerSupportFragment(), false);
+        replaceFragment(new SearchBusinessFragment(), false);
     }
 
 }

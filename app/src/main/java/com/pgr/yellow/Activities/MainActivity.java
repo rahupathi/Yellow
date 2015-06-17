@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
 
+import com.pgr.yellow.Fragments.Tab4Container;
 import com.pgr.yellow.R;
 import com.pgr.yellow.Fragments.Tab1Container;
 import com.pgr.yellow.Fragments.Tab2Container;
@@ -23,6 +24,7 @@ public class MainActivity extends ActionBarActivity   {
     private static final String TAB_1_TAG = "tab_1";
     private static final String TAB_2_TAG = "tab_2";
     private static final String TAB_3_TAG = "tab_3";
+    private static final String TAB_4_TAG = "tab_4";
     private FragmentTabHost mTabHost;
 
     @Override
@@ -62,8 +64,8 @@ public class MainActivity extends ActionBarActivity   {
                 R.drawable.tab_indicator_gen,"Bedrijven",R.drawable.ic_companies_white),Tab2Container.class,null);
         mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_3_TAG),
                 R.drawable.tab_indicator_gen,"Snel Bellen",R.drawable.ic_customer_support),Tab3Container.class,null);
-        mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_3_TAG),
-                R.drawable.tab_indicator_gen,"Zoek",R.drawable.ic_action_search),Tab3Container.class,null);
+        mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_4_TAG),
+                R.drawable.tab_indicator_gen,"Zoek",R.drawable.ic_action_search),Tab4Container.class,null);
 
 
     }

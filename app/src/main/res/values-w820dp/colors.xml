@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="YellowWhite">#ffffff</color>
+    <color name="ShadowColor">#000000</color>
+    <color name="ButtonTextColor">#5d6153</color>
+    <color name="TextHintColor">#66C2FF</color>
+    <color name="InputHintColor">#85ADAD</color>
+    <color name="TextColorHighlight">#66C2FF</color>
+    <color name ="YellowBackground">#000000</color>
+    <color name="YellowTextViewColor">#33B5E5</color>
+    <color name="YellowItemSelected">#ffcfeffb</color>
+    <color name="YellowTabSelected">#F5F6CE</color>
+</resources>

@@ -15,11 +15,12 @@
         android:divider="@android:color/white"
         android:fastScrollEnabled="true" />
 
-<!--    <LinearLayout
+    <LinearLayout
         android:id="@+id/sideIndex"
         android:layout_width="40dip"
         android:layout_height="fill_parent"
-        android:background="#FFF"
+        android:visibility="gone"
+        android:background="@android:color/darker_gray"
         android:gravity="center_horizontal"
-        android:orientation="vertical"></LinearLayout>-->
+        android:orientation="vertical"></LinearLayout>
 </LinearLayout>

@@ -67,7 +67,8 @@ public class BusinessFragment extends Fragment {
         try {
             //Intent intent = new Intent(getActivity().getApplicationContext(),ListWithHeaders.class);
             //startActivity(intent);
-            ListItemsLoad();
+            //ListItemsLoad();
+            LoadList();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -114,7 +115,9 @@ public class BusinessFragment extends Fragment {
         }
         return adapter;
     }
-  /* public class SideIndexGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+
+    public class SideIndexGestureListener extends GestureDetector.SimpleOnGestureListener {
 
        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
@@ -128,12 +131,12 @@ public class BusinessFragment extends Fragment {
             return super.onScroll(e1, e2, distanceX, distanceY);
         }
     }
-*/
-
- /*   private void LoadList(){
 
 
-        listview=(ListView)v.findViewById(R.id.list);
+   private void LoadList(){
+
+
+        listview=(ListView)v.findViewById(R.id.lvBusinessList);
 
         mGestureDetector = new GestureDetector(getActivity(), new SideIndexGestureListener());
 
@@ -311,6 +314,6 @@ public class BusinessFragment extends Fragment {
         countries.add("2");
         countries.add("9");
         return countries;
-    }*/
+    }
 
 }

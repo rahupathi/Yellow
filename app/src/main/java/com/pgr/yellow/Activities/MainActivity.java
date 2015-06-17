@@ -59,13 +59,13 @@ public class MainActivity extends ActionBarActivity   {
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         mTabHost.addTab(setIndicator(MainActivity.this, mTabHost.newTabSpec(TAB_1_TAG),
-                R.drawable.tab_indicator_gen, "Categorieen", R.drawable.ic_action_list), Tab1Container.class, null);
+                R.drawable.tab_indicator_gen, "Categorieen", R.drawable.tab_action_select), Tab1Container.class, null);
         mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_2_TAG),
-                R.drawable.tab_indicator_gen,"Bedrijven",R.drawable.ic_companies_white),Tab2Container.class,null);
+                R.drawable.tab_indicator_gen,"Bedrijven",R.drawable.tab_company_select),Tab2Container.class,null);
         mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_3_TAG),
-                R.drawable.tab_indicator_gen,"Snel Bellen",R.drawable.ic_customer_support),Tab3Container.class,null);
+                R.drawable.tab_indicator_gen,"Snel Bellen",R.drawable.tab_customer_select),Tab3Container.class,null);
         mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_4_TAG),
-                R.drawable.tab_indicator_gen,"Zoek",R.drawable.ic_action_search),Tab4Container.class,null);
+                R.drawable.tab_indicator_gen,"Zoek",R.drawable.tab_search_select),Tab4Container.class,null);
 
 
     }

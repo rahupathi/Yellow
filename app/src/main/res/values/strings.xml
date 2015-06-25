@@ -4,4 +4,12 @@
     <string name="action_settings">Settings</string>
     <string name="hello">Hello World, ListViewWithAlphabetsActivity!</string>
 
+
+    <string-array name="TabListEnglish">
+        <item>Categories</item>
+        <item>Companies</item>
+        <item>Quick Call</item>
+        <item>Search</item>
+    </string-array>
+
 </resources>

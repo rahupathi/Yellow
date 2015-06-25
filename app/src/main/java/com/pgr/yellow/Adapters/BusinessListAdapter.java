@@ -16,7 +16,6 @@ public class BusinessListAdapter extends BaseAdapter {
 
     public static abstract class Row {
     }
-
     public static final class Section extends Row {
         public final String text;
 
@@ -27,9 +26,12 @@ public class BusinessListAdapter extends BaseAdapter {
 
     public static final class Item extends Row {
         public final String text;
-
-        public Item(String text) {
+        public final String facilityName;
+        public  final String Alphabets;
+        public Item(String text,String facilityName,String alphabets) {
             this.text = text;
+            this.facilityName=facilityName;
+            this.Alphabets=alphabets;
         }
     }
 
@@ -81,6 +83,9 @@ public class BusinessListAdapter extends BaseAdapter {
             Item item = (Item) getItem(position);
             TextView textView = (TextView) view.findViewById(R.id.textView1);
             textView.setText(item.text);
+
+            TextView txtSubTitle = (TextView) view.findViewById(R.id.subTitle);
+            txtSubTitle.setText(String.valueOf(rows.size()) + " location");
         } else { // Section
             if (view == null) {
                 LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

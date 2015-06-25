@@ -17,11 +17,24 @@ import android.widget.TextView;
 import android.widget.TabHost.TabSpec;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import com.parse.ParseUser;
 import com.pgr.yellow.Fragments.Tab4Container;
+import com.pgr.yellow.Models.CategoryModel;
 import com.pgr.yellow.R;
 import com.pgr.yellow.Fragments.Tab1Container;
 import com.pgr.yellow.Fragments.Tab2Container;
 import com.pgr.yellow.Fragments.Tab3Container;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
 public class MainActivity extends ActionBarActivity   {
 
@@ -31,15 +44,82 @@ public class MainActivity extends ActionBarActivity   {
     private static final String TAB_3_TAG = "tab_3";
     private static final String TAB_4_TAG = "tab_4";
     private FragmentTabHost mTabHost;
+    private  String[] menudetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        menudetail = getResources().getStringArray(R.array.TabListEnglish);
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         InitView();
+        try {
+            //Parse.enableLocalDatastore(this);
+            //Parse.initialize(this, "mluS4CbVgOSQ5hOrpGZqgzEi1Uceu4TO9jEMuXNa", "XTlI1NqXAtGuhEZ9lG5Six38fpFOctosOjV2pgxG");
+            //ParseObject testObject = new ParseObject("TestObject");
+            //testObject.put("foo", "bar");
+            //testObject.saveInBackground();
+
+            GetCompanies();
+
+        }catch (Exception ex) {
+            Toast.makeText(MainActivity.this,ex.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+
+        // Initialize Parse.
+       // Parse.setApplicationId("mluS4CbVgOSQ5hOrpGZqgzEi1Uceu4TO9jEMuXNa", clientKey: "XTlI1NqXAtGuhEZ9lG5Six38fpFOctosOjV2pgxG")
+    }
+    public void GetCompanies()
+    {
+        //ParseACL acl = new ParseACL();
+        //acl.setPublicReadAccess(true);
+        //acl.setWriteAccess(ParseUser.getCurrentUser(), true);
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+        defaultACL.setPublicReadAccess(true);
+        //ParseUser objUser=new ParseUser();
+        //defaultACL.getReadAccess(objUser);
+        ParseACL.setDefaultACL(defaultACL, true);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Company");
+        query.findInBackground(new FindCallback<ParseObject>() {
+           public void done(List<ParseObject> objects, ParseException e) {
+               if (e == null) {
+                   //jectsWereRetrievedSuccessfully(objects);
+                   Log.e("Brand", "Retrieved " + objects.size() + " Brands");
+                   for (ParseObject dealsObject : objects) {
+                       Log.e("Companies", "Data " + dealsObject.get("name"));
+                   }
+               } else {
+                   Log.e("Parse", "Error: " + e.getMessage());
+               }
+           }
+       });
+
+
+        /*ParseQuery query = new ParseQuery("Companies");
+        query.ignoreACLs();
+        query.setLimit(1000);
+        query.include("name");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (e == null) {
+                    Log.e("Brand", "Retrieved " + objects.size() + " Brands");
+                    for (ParseObject dealsObject : objects) {
+                        Log.e("Companies", "Data " + dealsObject.get("name"));
+                    }
+                } else {
+                    Log.e("Parse", "Error: " + e.getMessage());
+                }
+            }
+        });*/
+
     }
 
     @Override
@@ -64,13 +144,13 @@ public class MainActivity extends ActionBarActivity   {
         mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         mTabHost.addTab(setIndicator(MainActivity.this, mTabHost.newTabSpec(TAB_1_TAG),
-                R.drawable.tab_indicator_gen, "Categorieen", R.drawable.tab_action_select, TAB_1_TAG), Tab1Container.class, null);
+                R.drawable.tab_indicator_gen, menudetail[0].toString(), R.drawable.tab_action_select, TAB_1_TAG), Tab1Container.class, null);
         mTabHost.addTab(setIndicator(MainActivity.this,mTabHost.newTabSpec(TAB_2_TAG),
-                R.drawable.tab_indicator_gen,"Bedrijven",R.drawable.tab_company_select,TAB_2_TAG),Tab2Container.class,null);
+                R.drawable.tab_indicator_gen,menudetail[1].toString(),R.drawable.tab_company_select,TAB_2_TAG),Tab2Container.class,null);
         mTabHost.addTab(setIndicator(MainActivity.this, mTabHost.newTabSpec(TAB_3_TAG),
-                R.drawable.tab_indicator_gen, "Snel Bellen", R.drawable.tab_customer_select, TAB_3_TAG), Tab3Container.class, null);
+                R.drawable.tab_indicator_gen, menudetail[2].toString(), R.drawable.tab_customer_select, TAB_3_TAG), Tab3Container.class, null);
         mTabHost.addTab(setIndicator(MainActivity.this, mTabHost.newTabSpec(TAB_4_TAG),
-                R.drawable.tab_indicator_gen, "Zoek", R.drawable.tab_search_select, TAB_4_TAG), Tab4Container.class, null);
+                R.drawable.tab_indicator_gen, menudetail[3].toString(), R.drawable.tab_search_select, TAB_4_TAG), Tab4Container.class, null);
 
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -84,12 +164,6 @@ public class MainActivity extends ActionBarActivity   {
         }
     }
     private void ChangeTextViewColor(String currentTa1b){
-
-        //((TextView)mTabHost.getTabWidget().getChildAt(0).get
-        //((TextView)mTabHost.getTabWidget().getChildAt(0).findViewById(R.id.txt_tabtxt)).setTextColor(Color.parseColor("#FACF2D"));
-        //((TextView)mTabHost.getTabWidget().getChildAt(1).findViewById(R.id.txt_tabtxt)).setTextColor(Color.parseColor("#FFF"));
-        //((TextView)mTabHost.getTabWidget().getChildAt(2).findViewById(R.id.txt_tabtxt)).setTextColor(Color.parseColor("#FFF"));
-        //((TextView)mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.txt_tabtxt)).setTextColor(Color.parseColor("#FFF"));
         for (int i = 0; i < mTabHost.getTabWidget().getChildCount(); i++) {
             View tabView = mTabHost.getTabWidget().getChildAt(i);
             if (tabView!=null) {

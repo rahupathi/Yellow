@@ -3,10 +3,13 @@ package com.pgr.yellow.Fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.pgr.yellow.Adapters.OrganizationAdapter;
@@ -26,6 +29,8 @@ public class SearchBusinessFragment extends Fragment {
     private SearchBusinessAdapter adapter;
     private View v;
 
+    private EditText mSearchEt;
+    private String mSearchQuery;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -40,9 +45,36 @@ public class SearchBusinessFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         try {
             LoadList();
+
+            mSearchEt = (EditText) v.findViewById(R.id.etBusinessSearch);
+            mSearchEt.addTextChangedListener(new SearchWatcher());
+            mSearchEt.setText(mSearchQuery);
+            mSearchEt.requestFocus();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+    private class SearchWatcher implements TextWatcher {
+
+        @Override
+        public void beforeTextChanged(CharSequence c, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence c, int i, int i2, int i3) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+            mSearchQuery = mSearchEt.getText().toString();
+            //adapter.filter(mSearchQuery);
+            adapter.filterData(mSearchQuery);
+        }
+
     }
     private void LoadList(){
 

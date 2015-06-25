@@ -19,13 +19,9 @@
             android:id="@+id/etBusinessSearch"
             android:hint="Search"
             android:drawableLeft="@android:drawable/ic_menu_search"
-            android:background="@drawable/search_box"
-            android:textSize="10dp"
-            android:singleLine="true"
-            android:password="false"
-            android:textStyle="normal"
-            android:inputType="text"
-            android:editable="true" />
+            android:textSize="12dp"
+            android:background="@drawable/search_box" />
+
     </LinearLayout>
 
     <LinearLayout

@@ -2,6 +2,7 @@ package com.pgr.yellow.Fragments;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
@@ -23,6 +24,7 @@ import com.pgr.yellow.Activities.ListItemObject;
 import com.pgr.yellow.Activities.ListWithHeaders;
 import com.pgr.yellow.Activities.SeparatedListAdapter;
 import com.pgr.yellow.Adapters.BusinessListAdapter;
+import com.pgr.yellow.Models.OrganizationModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;
@@ -69,13 +71,12 @@ public class BusinessFragment extends Fragment {
             //startActivity(intent);
             //ListItemsLoad();
             LoadList();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    private void ListItemsLoad() {
+  /*  private void ListItemsLoad() {
         try {
             listview = (ListView) v.findViewById(R.id.lvBusinessList);
 
@@ -115,11 +116,11 @@ public class BusinessFragment extends Fragment {
         }
         return adapter;
     }
-
+*/
 
     public class SideIndexGestureListener extends GestureDetector.SimpleOnGestureListener {
 
-       @Override
+        @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
             sideIndexX = sideIndexX - distanceX;
             sideIndexY = sideIndexY - distanceY;
@@ -133,16 +134,19 @@ public class BusinessFragment extends Fragment {
     }
 
 
-   private void LoadList(){
+    private void LoadList() {
 
-
-        listview=(ListView)v.findViewById(R.id.lvBusinessList);
+        alphabet = new ArrayList<Object[]>();
+        listview = (ListView) v.findViewById(R.id.lvBusinessList);
 
         mGestureDetector = new GestureDetector(getActivity(), new SideIndexGestureListener());
 
-        List<String> countries = populateCountries();
-        Collections.sort(countries);
+        //List<String> countries = populateCountries();
 
+        List<OrganizationModel> countries = populateCountries();
+        //Collections.sort(countries);
+
+        //List<Row> rows = new ArrayList<Row>();
         List<Row> rows = new ArrayList<Row>();
         int start = 0;
         int end = 0;
@@ -150,8 +154,8 @@ public class BusinessFragment extends Fragment {
         Object[] tmpIndexItem = null;
         Pattern numberPattern = Pattern.compile("[0-9]");
 
-        for (String country : countries) {
-            String firstLetter = country.substring(0, 1);
+        for (OrganizationModel country : countries) {
+            String firstLetter = country.getAlphabets().substring(0, 1);
 
             // Group numbers together in the scroller
             if (numberPattern.matcher(firstLetter).matches()) {
@@ -172,12 +176,15 @@ public class BusinessFragment extends Fragment {
 
             // Check if we need to add a header row
             if (!firstLetter.equals(previousLetter)) {
-                rows.add(new Section(firstLetter));
-                sections.put(firstLetter, start);
+                if (country.getFacilityName() != null) {
+                    rows.add(new Section(firstLetter));
+                    sections.put(firstLetter, start);
+                }
             }
-
             // Add the country to the list
-            rows.add(new Item(country));
+            if (country.getFacilityName() != null) {
+                rows.add(new Item(country.getFacilityName(), country.getFacilityName(), firstLetter));
+            }
             previousLetter = firstLetter;
         }
 
@@ -192,12 +199,13 @@ public class BusinessFragment extends Fragment {
 
         adapter.setRows(rows);
         listview.setAdapter(adapter);
-
+        updateList();
         //listview.setOnTouchListener(new );
     }
+
     public void updateList() {
-        LinearLayout sideIndex = (LinearLayout)v.findViewById(R.id.sideIndex);
-        sideIndex.removeAllViews();
+        LinearLayout sideIndex = (LinearLayout) v.findViewById(R.id.sideIndex);
+        //sideIndex.removeAllViews();
         indexListSize = alphabet.size();
         if (indexListSize < 1) {
             return;
@@ -216,37 +224,41 @@ public class BusinessFragment extends Fragment {
         }
 
         TextView tmpTV;
-        for (double i = 1; i <= indexListSize; i = i + delta) {
-            Object[] tmpIndexItem = alphabet.get((int) i - 1);
-            String tmpLetter = tmpIndexItem[0].toString();
+        if (sideIndex.getChildCount() == 0) {
+            for (double i = 1; i <= indexListSize; i = i + delta) {
+                Object[] tmpIndexItem = alphabet.get((int) i - 1);
+                String tmpLetter = tmpIndexItem[0].toString();
 
-            tmpTV = new TextView(getActivity());
-            tmpTV.setText(tmpLetter);
-            tmpTV.setGravity(Gravity.CENTER);
-            tmpTV.setTextSize(15);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
-            tmpTV.setLayoutParams(params);
-            sideIndex.addView(tmpTV);
-        }
-
-        sideIndexHeight = sideIndex.getHeight();
-
-        sideIndex.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // now you know coordinates of touch
-                sideIndexX = event.getX();
-                sideIndexY = event.getY();
-
-                // and can display a proper item it country list
-                displayListItem();
-
-                return false;
+                tmpTV = new TextView(getActivity());
+                tmpTV.setText(tmpLetter);
+                tmpTV.setTextColor(Color.parseColor("#ffffff"));
+                tmpTV.setGravity(Gravity.CENTER);
+                tmpTV.setTextSize(12);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
+                tmpTV.setLayoutParams(params);
+                sideIndex.addView(tmpTV);
             }
-        });
+
+            sideIndexHeight = sideIndex.getHeight();
+
+            sideIndex.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // now you know coordinates of touch
+                    sideIndexX = event.getX();
+                    sideIndexY = event.getY();
+
+                    // and can display a proper item it country list
+                    displayListItem();
+
+                    return false;
+                }
+            });
+        }
     }
+
     public void displayListItem() {
-        LinearLayout sideIndex = (LinearLayout)v.findViewById(R.id.sideIndex);
+        LinearLayout sideIndex = (LinearLayout) v.findViewById(R.id.sideIndex);
         sideIndexHeight = sideIndex.getHeight();
         // compute number of pixels for every side index item
         double pixelPerIndexItem = (double) sideIndexHeight / indexListSize;
@@ -257,15 +269,70 @@ public class BusinessFragment extends Fragment {
         // get the item (we can do it since we know item index)
         if (itemPosition < alphabet.size()) {
             Object[] indexItem = alphabet.get(itemPosition);
-            int subitemPosition = sections.get(indexItem[0]);
-
+            int subitemPosition;
+            try {
+                subitemPosition = sections.get(indexItem[0]);
+            } catch (Exception ex) {
+                subitemPosition = -1;
+                Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
             //ListView listView = (ListView) findViewById(android.R.id.list);
-            listview.setSelection(subitemPosition);
+            if (subitemPosition > 0)
+                listview.setSelection(subitemPosition);
+
         }
     }
-    private List<String> populateCountries() {
-        List<String> countries = new ArrayList<String>();
-        countries.add("Afghanistan");
+
+    private List<OrganizationModel> populateCountries() {
+
+        //List<String> countries = new ArrayList<String>();
+        List<OrganizationModel> countries = new ArrayList<OrganizationModel>();
+        OrganizationModel orgModel = new OrganizationModel();
+        ArrayList<String> alphabets = new ArrayList<String>();
+        alphabets.add("A");
+        alphabets.add("B");
+        alphabets.add("C");
+        alphabets.add("D");
+        alphabets.add("E");
+        alphabets.add("F");
+        alphabets.add("G");
+        alphabets.add("H");
+        alphabets.add("I");
+        alphabets.add("J");
+        alphabets.add("K");
+        alphabets.add("L");
+        alphabets.add("M");
+        alphabets.add("N");
+        alphabets.add("O");
+        alphabets.add("P");
+        alphabets.add("Q");
+        alphabets.add("R");
+        alphabets.add("S");
+        alphabets.add("T");
+        alphabets.add("U");
+        alphabets.add("V");
+        alphabets.add("X");
+        alphabets.add("Y");
+        alphabets.add("Z");
+        alphabets.add("0");
+        alphabets.add("2");
+        alphabets.add("9");
+
+        for (String alpha : alphabets) {
+            orgModel = new OrganizationModel();
+            orgModel.setAlphabets(alpha);
+            countries.add(orgModel);
+        }
+
+        countries.get(0).setFacilityName("Afghanistan");
+        countries.get(1).setFacilityName("Albania");
+        countries.get(2).setFacilityName("Bahrain");
+        countries.get(3).setFacilityName("Bangladesh");
+        countries.get(4).setFacilityName("Cambodia");
+        countries.get(5).setFacilityName("Cameroon");
+
+
+        /*countries.add("Afghanistan");
         countries.add("Albania");
         countries.add("Bahrain");
         countries.add("Bangladesh");
@@ -312,7 +379,8 @@ public class BusinessFragment extends Fragment {
         countries.add("Zimbabwe");
         countries.add("0");
         countries.add("2");
-        countries.add("9");
+        countries.add("9");*/
+
         return countries;
     }
 

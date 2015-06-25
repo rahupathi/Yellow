@@ -2,8 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     android:background="@android:color/black"
     android:orientation="horizontal">
 
@@ -19,8 +17,9 @@
         android:id="@+id/sideIndex"
         android:layout_width="40dip"
         android:layout_height="fill_parent"
-        android:visibility="gone"
-        android:background="@android:color/darker_gray"
+        android:visibility="visible"
+        android:background="#1C1C1C"
         android:gravity="center_horizontal"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+    </LinearLayout>
 </LinearLayout>

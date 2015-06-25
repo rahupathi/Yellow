@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.Models.ProductGroupModel;
+import com.pgr.yellow.Models.ProductModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import com.pgr.yellow.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Thiyagu on 4/2/2015.
@@ -94,4 +97,29 @@ public class SearchBusinessAdapter extends BaseAdapter {
         holder.tvSBFacilityCity.setText(facilitylist.get(position).getCity());
         return view;
     }
+    public void filterData(String query) {
+
+        query = query.toLowerCase(Locale.getDefault());
+
+        facilitylist.clear();
+        if (query.isEmpty()) {
+            facilitylist.addAll(arrayList);
+        } else {
+            for (OrganizationModel tOrganizationModel: facilitylist) {
+                if (tOrganizationModel.getFacilityName()
+                        .toLowerCase(Locale.getDefault()).contains(query)
+                        || tOrganizationModel.getFacilityAddress()
+                        .toLowerCase(Locale.getDefault())
+                        .contains(query)
+                        ) {
+                    facilitylist.add(tOrganizationModel);
+                }
+            }
+
+        }
+        //Log.v("MyListAdapter", String.valueOf(providerList.size()));
+        notifyDataSetChanged();
+
+    }
+
 }

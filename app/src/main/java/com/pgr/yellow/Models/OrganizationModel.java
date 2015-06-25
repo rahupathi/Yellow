@@ -14,6 +14,15 @@ public class OrganizationModel implements Serializable {
     private String phone;
     private String county;
     private String state;
+    private String alphabets;
+
+    public String getAlphabets() {
+        return alphabets;
+    }
+    public void setAlphabets(String _alphabets) {
+        this.alphabets = _alphabets;
+    }
+
 
     public String getFacilityID() {
         return facilityID;

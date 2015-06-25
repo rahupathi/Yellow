@@ -94,7 +94,7 @@ public class BusinessActivity extends ListActivity{
             }
 
             // Add the country to the list
-            rows.add(new BusinessListAdapter.Item(country));
+            rows.add(new BusinessListAdapter.Item(country,country,firstLetter));
             previousLetter = firstLetter;
         }
 

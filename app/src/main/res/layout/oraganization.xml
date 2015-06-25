@@ -21,11 +21,7 @@
             android:drawableLeft="@android:drawable/ic_menu_search"
             android:background="@drawable/search_box"
             android:textSize="12dp"
-            android:singleLine="true"
-            android:password="false"
-            android:textStyle="normal"
-            android:inputType="text"
-            android:editable="true" />
+       />
     </LinearLayout>
 
     <LinearLayout

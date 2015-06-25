@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.pgr.yellow.Models.CategoryModel;
 import com.pgr.yellow.Models.OrganizationModel;
 import com.pgr.yellow.R;
 
@@ -21,14 +22,14 @@ import java.util.List;
 public class OrganizationAdapter extends BaseAdapter {
     Context fcontext;
     LayoutInflater inflater;
-    private List<OrganizationModel> facilitylist=null;
-    private ArrayList<OrganizationModel> arrayList;
+    private List<CategoryModel> facilitylist=null;
+    private ArrayList<CategoryModel> arrayList;
 
-    public OrganizationAdapter(Context context, List<OrganizationModel> _facilitylist){
+    public OrganizationAdapter(Context context, List<CategoryModel> _facilitylist){
         fcontext=context;
         inflater= LayoutInflater.from(context);
         this.facilitylist=_facilitylist;
-        this.arrayList=new ArrayList<OrganizationModel>();
+        this.arrayList=new ArrayList<CategoryModel>();
         this.arrayList.addAll(facilitylist);
     }
     public class ViewHolder{
@@ -72,8 +73,8 @@ public class OrganizationAdapter extends BaseAdapter {
             holder=(ViewHolder)view.getTag();
         }
 
-        holder.txtFacilityName.setText(facilitylist.get(position).getFacilityName());
-        holder.txtCity.setText(facilitylist.get(position).getCity());
+        holder.txtFacilityName.setText(facilitylist.get(position).getCategoryName());
+        holder.txtCity.setText(String.valueOf(facilitylist.get(position).getCompanyCount())+ " locations");
         return view;
     }
 }

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pgr.yellow.Activities.BaseContainerFragment;
-import com.pgr.yellow.Fragments.OragnizationsFragment;
 import com.pgr.yellow.R;
 
 /**
@@ -31,7 +30,7 @@ public class Tab1Container  extends BaseContainerFragment {
     }
 
     private void initView() {
-        replaceFragment(new OragnizationsFragment(), false);
+        replaceFragment(new CategoryFragment(), false);
     }
 
 }

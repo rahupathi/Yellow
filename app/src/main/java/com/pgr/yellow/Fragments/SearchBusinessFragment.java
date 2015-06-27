@@ -12,9 +12,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.pgr.yellow.Adapters.OrganizationAdapter;
 import com.pgr.yellow.Adapters.SearchBusinessAdapter;
-import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.Models.CompanyModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 public class SearchBusinessFragment extends Fragment {
 
     private ListView listView;
-    private ArrayList<OrganizationModel> organizationModelList = null;
+    private ArrayList<CompanyModel> companyModelList = null;
     private SearchBusinessAdapter adapter;
     private View v;
 
@@ -78,33 +77,33 @@ public class SearchBusinessFragment extends Fragment {
     }
     private void LoadList(){
 
-        organizationModelList = new ArrayList<OrganizationModel>();
-        OrganizationModel objOrganizationMode = new OrganizationModel();
-        objOrganizationMode.setFacilityName("Aannemingsbedrijf RADJ");
-        objOrganizationMode.setFacilityAddress("Arabistraat perceel 2449 Geyersvljit, Paramaribo");
+        companyModelList = new ArrayList<CompanyModel>();
+        CompanyModel objOrganizationMode = new CompanyModel();
+        objOrganizationMode.setCompanyName("Aannemingsbedrijf RADJ");
+        objOrganizationMode.setAddress("Arabistraat perceel 2449 Geyersvljit, Paramaribo");
         objOrganizationMode.setCity("Gesloten");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
-        objOrganizationMode.setFacilityName("Aannemingsbedrijf Supra");
-        objOrganizationMode.setFacilityAddress("Commissaris Weytingwyg 335, Paramaribo");
+        objOrganizationMode = new CompanyModel();
+        objOrganizationMode.setCompanyName("Aannemingsbedrijf Supra");
+        objOrganizationMode.setAddress("Commissaris Weytingwyg 335, Paramaribo");
         objOrganizationMode.setCity("Gesloten");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
-        objOrganizationMode.setFacilityName("Alki Bouw & Constructie NY");
-        objOrganizationMode.setFacilityAddress("Ouderzorgweg 9, Paramaribo");
+        objOrganizationMode = new CompanyModel();
+        objOrganizationMode.setCompanyName("Alki Bouw & Constructie NY");
+        objOrganizationMode.setAddress("Ouderzorgweg 9, Paramaribo");
         objOrganizationMode.setCity("Gesloten");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
-        objOrganizationMode.setFacilityName("Antonius Construnctions NV");
-        objOrganizationMode.setFacilityAddress("Lettitia Vriedselann 16, Paramaribo");
+        objOrganizationMode = new CompanyModel();
+        objOrganizationMode.setCompanyName("Antonius Construnctions NV");
+        objOrganizationMode.setAddress("Lettitia Vriedselann 16, Paramaribo");
         objOrganizationMode.setCity("Gesloten");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
         listView = (ListView) v.findViewById(R.id.lvSearchBusiness);
-        adapter = new SearchBusinessAdapter(getActivity().getApplicationContext(), organizationModelList);
+        adapter = new SearchBusinessAdapter(getActivity().getApplicationContext(), companyModelList);
         listView.setAdapter(adapter);
         listView.requestFocus(0);
 

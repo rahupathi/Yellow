@@ -5,15 +5,15 @@ import java.io.Serializable;
 /**
  * Created by Thiyagu on 3/27/2015.
  */
-public class OrganizationModel implements Serializable {
-    private String facilityID;
-    private String facilityName;
-    private String facilityAddress;
+public class CompanyModel implements Serializable {
+    private String companyID;
+    private String companyName;
+    private String address;
     private String city;
     private String zip;
     private String phone;
     private String county;
-    private String state;
+    private String fax;
     private String alphabets;
 
     public String getAlphabets() {
@@ -24,28 +24,28 @@ public class OrganizationModel implements Serializable {
     }
 
 
-    public String getFacilityID() {
-        return facilityID;
+    public String getCompanyID() {
+        return companyID;
     }
 
-    public void setFacilityID(String facilityID) {
-        this.facilityID = facilityID;
+    public void setCompanyID(String _companyID) {
+        this.companyID = _companyID;
     }
 
-    public String getFacilityName() {
-        return facilityName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
+    public void setCompanyName(String _companyName) {
+        this.companyName = _companyName;
     }
 
-    public String getFacilityAddress() {
-        return facilityAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setFacilityAddress(String facilityAddress) {
-        this.facilityAddress = facilityAddress;
+    public void setAddress(String _address) {
+        this.address = _address;
     }
 
     public String getCity() {
@@ -72,13 +72,14 @@ public class OrganizationModel implements Serializable {
         this.phone = phone;
     }
 
-    public String getState() {
-        return state;
+    public String getFax() {
+        return fax;
     }
 
-    public void setState(String _state) {
-        this.state = _state;
+    public void setFax(String _fax) {
+        this.fax = _fax;
     }
+
     public String getCounty() {
         return county;
     }

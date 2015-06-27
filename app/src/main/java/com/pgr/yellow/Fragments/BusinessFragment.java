@@ -1,7 +1,5 @@
 package com.pgr.yellow.Fragments;
 
-import android.app.ListActivity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,29 +9,19 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pgr.yellow.Activities.BusinessActivity;
-import com.pgr.yellow.Activities.ListItemContainer;
-import com.pgr.yellow.Activities.ListItemInterface;
-import com.pgr.yellow.Activities.ListItemObject;
-import com.pgr.yellow.Activities.ListWithHeaders;
-import com.pgr.yellow.Activities.SeparatedListAdapter;
 import com.pgr.yellow.Adapters.BusinessListAdapter;
-import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.Models.CompanyModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 import com.pgr.yellow.Adapters.BusinessListAdapter.*;
@@ -143,7 +131,7 @@ public class BusinessFragment extends Fragment {
 
         //List<String> countries = populateCountries();
 
-        List<OrganizationModel> countries = populateCountries();
+        List<CompanyModel> countries = populateCountries();
         //Collections.sort(countries);
 
         //List<Row> rows = new ArrayList<Row>();
@@ -154,7 +142,7 @@ public class BusinessFragment extends Fragment {
         Object[] tmpIndexItem = null;
         Pattern numberPattern = Pattern.compile("[0-9]");
 
-        for (OrganizationModel country : countries) {
+        for (CompanyModel country : countries) {
             String firstLetter = country.getAlphabets().substring(0, 1);
 
             // Group numbers together in the scroller
@@ -176,14 +164,14 @@ public class BusinessFragment extends Fragment {
 
             // Check if we need to add a header row
             if (!firstLetter.equals(previousLetter)) {
-                if (country.getFacilityName() != null) {
+                if (country.getCompanyName() != null) {
                     rows.add(new Section(firstLetter));
                     sections.put(firstLetter, start);
                 }
             }
             // Add the country to the list
-            if (country.getFacilityName() != null) {
-                rows.add(new Item(country.getFacilityName(), country.getFacilityName(), firstLetter));
+            if (country.getCompanyName() != null) {
+                rows.add(new Item(country.getCompanyName(), country.getCompanyName(), firstLetter));
             }
             previousLetter = firstLetter;
         }
@@ -283,11 +271,11 @@ public class BusinessFragment extends Fragment {
         }
     }
 
-    private List<OrganizationModel> populateCountries() {
+    private List<CompanyModel> populateCountries() {
 
         //List<String> countries = new ArrayList<String>();
-        List<OrganizationModel> countries = new ArrayList<OrganizationModel>();
-        OrganizationModel orgModel = new OrganizationModel();
+        List<CompanyModel> countries = new ArrayList<CompanyModel>();
+        CompanyModel orgModel = new CompanyModel();
         ArrayList<String> alphabets = new ArrayList<String>();
         alphabets.add("A");
         alphabets.add("B");
@@ -319,17 +307,17 @@ public class BusinessFragment extends Fragment {
         alphabets.add("9");
 
         for (String alpha : alphabets) {
-            orgModel = new OrganizationModel();
+            orgModel = new CompanyModel();
             orgModel.setAlphabets(alpha);
             countries.add(orgModel);
         }
 
-        countries.get(0).setFacilityName("Afghanistan");
-        countries.get(1).setFacilityName("Albania");
-        countries.get(2).setFacilityName("Bahrain");
-        countries.get(3).setFacilityName("Bangladesh");
-        countries.get(4).setFacilityName("Cambodia");
-        countries.get(5).setFacilityName("Cameroon");
+        countries.get(0).setCompanyName("Afghanistan");
+        countries.get(1).setCompanyName("Albania");
+        countries.get(2).setCompanyName("Bahrain");
+        countries.get(3).setCompanyName("Bangladesh");
+        countries.get(4).setCompanyName("Cambodia");
+        countries.get(5).setCompanyName("Cameroon");
 
 
         /*countries.add("Afghanistan");

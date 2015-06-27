@@ -15,27 +15,21 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
-import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.pgr.yellow.Adapters.OrganizationAdapter;
 import com.pgr.yellow.Models.CategoryModel;
-import com.pgr.yellow.Models.OrganizationModel;
+import com.pgr.yellow.Models.CompanyModel;
 import com.pgr.yellow.R;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CategoryFragment extends Fragment {
 
     private ListView listView;
-    private ArrayList<OrganizationModel> organizationModelList = null;
+    private ArrayList<CompanyModel> companyModelList = null;
     private OrganizationAdapter adapter;
     View v;
     ArrayList<CategoryModel> categoryModelsList = null;
@@ -103,6 +97,7 @@ public class CategoryFragment extends Fragment {
                                         CategoryModel cat = (CategoryModel) categoryModelsList.get(i);
                                         if (cat.getObjectId().equalsIgnoreCase(sObjectID)) {
                                             cat.setCompanyCount(iCompanycount);
+                                            cat.setObjectId(category.getObjectId().toString());
                                         }
                                     }
                                 }
@@ -121,12 +116,18 @@ public class CategoryFragment extends Fragment {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view,
                                                     int position, long id) {
-                                Fragment frag = new OranizationDetailList();
-                                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                                ft.replace(R.id.container_framelayout, frag);
-                                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                ft.addToBackStack(null);
-                                ft.commit();
+                                final CategoryModel mCategoryModel = (CategoryModel) parent.getItemAtPosition(position);
+                                if (mCategoryModel != null) {
+                                    Fragment frag = new OranizationDetailList();
+                                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                    ft.replace(R.id.container_framelayout, frag);
+                                    Bundle args = new Bundle();
+                                    args.putString("CategoryId", mCategoryModel.getObjectId());
+                                    frag.setArguments(args);
+                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    ft.addToBackStack(null);
+                                    ft.commit();
+                                }
                             }
 
                         });
@@ -144,27 +145,26 @@ public class CategoryFragment extends Fragment {
 
     private void LoadList() {
 
-
-        organizationModelList = new ArrayList<OrganizationModel>();
-        OrganizationModel objOrganizationMode = new OrganizationModel();
+      /*companyModelList  companyModelList = new ArrayList<CompanyModel>();
+        CompanyModel objOrganizationMode = new CompanyModel();
         objOrganizationMode.setFacilityName("Annemers");
         objOrganizationMode.setCity("5 bedrijven");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
+        objOrganizationMode = new CompanyModel();
         objOrganizationMode.setFacilityName("Accountants");
         objOrganizationMode.setCity("4 bedrijven");
-        organizationModelList.add(objOrganizationMode);
+        companyModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
+        objOrganizationMode = new CompanyModel();
         objOrganizationMode.setFacilityName("Constructions");
         objOrganizationMode.setCity("2 bedrijven");
-        organizationModelList.add(objOrganizationMode);
+        compnayModelList.add(objOrganizationMode);
 
-        objOrganizationMode = new OrganizationModel();
+        objOrganizationMode = new CompanyModel();
         objOrganizationMode.setFacilityName("Vehicle Service");
         objOrganizationMode.setCity("3 bedrijven");
-        organizationModelList.add(objOrganizationMode);
+        compnayModelList.add(objOrganizationMode);*/
 
         listView = (ListView) v.findViewById(R.id.lvFacilitylistView);
         adapter = new OrganizationAdapter(getActivity().getApplicationContext(), categoryModelsList);

@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 
 import com.pgr.yellow.Models.CategoryModel;
-import com.pgr.yellow.Models.OrganizationModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;

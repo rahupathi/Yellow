@@ -8,30 +8,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pgr.yellow.Models.OrganizationModel;
-import com.pgr.yellow.Models.ProductGroupModel;
-import com.pgr.yellow.Models.ProductModel;
+import com.pgr.yellow.Models.CompanyModel;
 import com.pgr.yellow.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-
-import com.pgr.yellow.Models.OrganizationModel;
-import com.pgr.yellow.R;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -40,14 +23,14 @@ import java.util.Locale;
 public class SearchBusinessAdapter extends BaseAdapter {
     Context fcontext;
     LayoutInflater inflater;
-    private List<OrganizationModel> facilitylist=null;
-    private ArrayList<OrganizationModel> arrayList;
+    private List<CompanyModel> facilitylist=null;
+    private ArrayList<CompanyModel> arrayList;
 
-    public SearchBusinessAdapter(Context context, List<OrganizationModel> _facilitylist){
+    public SearchBusinessAdapter(Context context, List<CompanyModel> _facilitylist){
         fcontext=context;
         inflater= LayoutInflater.from(context);
         this.facilitylist=_facilitylist;
-        this.arrayList=new ArrayList<OrganizationModel>();
+        this.arrayList=new ArrayList<CompanyModel>();
         this.arrayList.addAll(facilitylist);
     }
     public class ViewHolder{
@@ -92,8 +75,8 @@ public class SearchBusinessAdapter extends BaseAdapter {
             holder=(ViewHolder)view.getTag();
         }
 
-        holder.tvSBFacilityName.setText(facilitylist.get(position).getFacilityName());
-        holder.tvSBFacilityAddress.setText(facilitylist.get(position).getFacilityAddress());
+        holder.tvSBFacilityName.setText(facilitylist.get(position).getCompanyName());
+        holder.tvSBFacilityAddress.setText(facilitylist.get(position).getAddress());
         holder.tvSBFacilityCity.setText(facilitylist.get(position).getCity());
         return view;
     }
@@ -105,14 +88,14 @@ public class SearchBusinessAdapter extends BaseAdapter {
         if (query.isEmpty()) {
             facilitylist.addAll(arrayList);
         } else {
-            for (OrganizationModel tOrganizationModel: facilitylist) {
-                if (tOrganizationModel.getFacilityName()
+            for (CompanyModel tCompanyModel : facilitylist) {
+                if (tCompanyModel.getCompanyName()
                         .toLowerCase(Locale.getDefault()).contains(query)
-                        || tOrganizationModel.getFacilityAddress()
+                        || tCompanyModel.getCompanyName()
                         .toLowerCase(Locale.getDefault())
                         .contains(query)
                         ) {
-                    facilitylist.add(tOrganizationModel);
+                    facilitylist.add(tCompanyModel);
                 }
             }
 
